@@ -28,11 +28,12 @@ public:
 
   void TeleopPeriodic() override
   {
-    if (drv_pad.GetAButtonPressed())
+    if (drv_pad.GetAButton())
     {
+      //TODO: Set 7 more power than 8
       retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
-      r_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
-      l_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+      r_retractor.Set(TalonSRXControlMode::PercentOutput, 1.2);
+      l_retractor.Set(TalonSRXControlMode::PercentOutput, 1.2);
     }
     else
     {
