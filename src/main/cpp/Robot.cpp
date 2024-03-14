@@ -6,22 +6,42 @@
 #include <frc/Joystick.h>
 #include <frc/TimedRobot.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/motorcontrol/PWMSparkMax.h>
+#include <ctre/Phoenix.h>
+#include <frc/XboxController.h>
 
-class Robot : public frc::TimedRobot {
- public:
-  Robot() {
+class Robot : public frc::TimedRobot
+{
+  // 9 -
+  // 8 - right
+  // 7 - left
+  ctre::phoenix::motorcontrol::can::TalonSRX retractor{9}, r_retractor{8}, l_retractor{7};
+  frc::XboxController drv_pad{0};
+  bool enabled {false};
+
+public:
+  Robot()
+  {
   }
 
-  void RobotInit() override {
+  void RobotInit() override
+  {
+    if (drv_pad.GetAButtonPressed())
+    {
+      retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+      r_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+      l_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+    }
+    
   }
 
-  void TeleopPeriodic() override {
+  void TeleopPeriodic() override
+  {
   }
 };
 
 #ifndef RUNNING_FRC_TESTS
-int main() {
+int main()
+{
   return frc::StartRobot<Robot>();
 }
 #endif
