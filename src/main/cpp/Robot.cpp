@@ -11,9 +11,6 @@
 
 class Robot : public frc::TimedRobot
 {
-  // 9 -
-  // 8 - right
-  // 7 - left
   ctre::phoenix::motorcontrol::can::TalonSRX retractor{9}, r_retractor{8}, l_retractor{7};
   frc::XboxController drv_pad{0};
   bool enabled {false};
@@ -27,9 +24,9 @@ public:
   {
     if (drv_pad.GetAButtonPressed())
     {
-      retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
-      r_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
-      l_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+      retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
+      r_retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
+      l_retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
     }
     
   }
