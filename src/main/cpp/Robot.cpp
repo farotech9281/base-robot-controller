@@ -13,26 +13,33 @@ class Robot : public frc::TimedRobot
 {
   ctre::phoenix::motorcontrol::can::TalonSRX retractor{9}, r_retractor{8}, l_retractor{7};
   frc::XboxController drv_pad{0};
-  bool enabled {false};
+  bool enabled{false};
 
 public:
   Robot()
   {
+    r_retractor.SetInverted(true);
+    l_retractor.SetInverted(true);
   }
 
   void RobotInit() override
   {
-    if (drv_pad.GetAButtonPressed())
-    {
-      retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
-      r_retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
-      l_retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
-    }
-    
   }
 
   void TeleopPeriodic() override
   {
+    if (drv_pad.GetAButtonPressed())
+    {
+      retractor.Set(TalonSRXControlMode::PercentOutput, 0.75);
+      r_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+      l_retractor.Set(TalonSRXControlMode::PercentOutput, 1.0);
+    }
+    else
+    {
+      retractor.Set(TalonSRXControlMode::PercentOutput, 0.0);
+      r_retractor.Set(TalonSRXControlMode::PercentOutput, 0.0);
+      l_retractor.Set(TalonSRXControlMode::PercentOutput, 0.0);
+    }
   }
 };
 
