@@ -10,7 +10,7 @@ This is modified version of software used to control FRC 9281 Team robot in 2024
              Initialize Software
                       |
                       V
-         Jump into TeleopP/Autonomous
+         Jump into Teleop/Autonomous
                       |
                       V
     --> Wait for signal from the driver <--
