@@ -88,9 +88,10 @@ public:
       l_arm.Set(TalonSRXControlMode::PercentOutput, 0.0);
     }
   }
+
+  // Autonomous movement
   void AutonomousPeriodic()
   {
-    // Untested AutonomousPeriodic (I'm fucking crying)
     m_drive.TankDrive(0.5, 0.5);
     sleep(2);
     m_drive.TankDrive(0.0, 0.0);
@@ -98,13 +99,10 @@ public:
   }
 };
 
-// main func, I think, I don't have to explain...
+// function that starts the robot
 #ifndef RUNNING_FRC_TESTS
 int main()
 {
   return frc::StartRobot<Robot>();
 }
 #endif
-
-// This code fucking sucks - Sun Tzu
-// Linus Torvalds probably won't be proud
